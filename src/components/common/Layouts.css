@@ -1,0 +1,6 @@
+.layout { display: flex; min-height: 100vh; }
+.layout-content { margin-left: var(--sidebar-w); flex: 1; padding: 28px; }
+.admin-sidebar .sb-link:hover { background: rgba(124,58,237,0.08); color: var(--admin); }
+.sb-active-admin { background: rgba(124,58,237,0.1) !important; color: var(--admin) !important; font-weight: 600; }
+.hr-sidebar .sb-link:hover { background: rgba(5,150,105,0.08); color: var(--hr); }
+.sb-active-hr { background: rgba(5,150,105,0.1) !important; color: var(--hr) !important; font-weight: 600; }

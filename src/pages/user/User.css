@@ -1,0 +1,23 @@
+.greeting { font-size: 14px; color: var(--gray-500); font-weight: 500; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+@media (max-width: 900px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+.stat-card {
+  border-radius: var(--radius); border: 1.5px solid;
+  padding: 20px; display: flex; flex-direction: column; gap: 6px;
+}
+.stat-icon { font-size: 24px; }
+.stat-value { font-size: 28px; font-weight: 800; }
+.stat-label { font-size: 13px; color: var(--gray-600); font-weight: 500; }
+.section-title { font-size: 16px; font-weight: 700; color: var(--gray-800); }
+.empty-msg { color: var(--gray-400); font-size: 14px; padding: 20px 0; }
+
+/* Notifications */
+.notif-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px 0; border-bottom: 1px solid var(--gray-100);
+}
+.notif-item:last-child { border-bottom: none; }
+.notif-unread { background: #f8fbff; margin: 0 -20px; padding: 14px 20px; }
+.notif-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.notif-msg { font-size: 14px; color: var(--gray-800); margin-bottom: 4px; }
+.notif-date { font-size: 12px; color: var(--gray-400); }

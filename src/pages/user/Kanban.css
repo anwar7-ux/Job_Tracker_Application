@@ -1,0 +1,12 @@
+.kanban-board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+@media (max-width: 1000px) { .kanban-board { grid-template-columns: repeat(2, 1fr); } }
+.kanban-col { background: var(--gray-50); border-radius: var(--radius); padding: 14px; min-height: 400px; }
+.kanban-col-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 2px solid; margin-bottom: 12px; }
+.kanban-col-title { font-size: 14px; font-weight: 700; }
+.kanban-col-count { font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
+.kanban-cards { display: flex; flex-direction: column; gap: 10px; }
+.kanban-card { background: #fff; border-radius: var(--radius-sm); padding: 14px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 6px; }
+.kc-title { font-size: 14px; font-weight: 700; color: var(--gray-900); }
+.kc-company, .kc-date, .kc-stream { font-size: 12px; color: var(--gray-500); }
+.kc-actions { display: flex; gap: 6px; margin-top: 6px; }
+.kanban-empty { font-size: 13px; color: var(--gray-400); text-align: center; padding: 20px 0; }
