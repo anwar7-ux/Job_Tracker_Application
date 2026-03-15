@@ -7,7 +7,7 @@ import './Auth.css'
 export default function Register() {
   const navigate = useNavigate()
   const [form, setForm] = useState({ username: '', email: '', phone: '', password: '', confirm: '' })
-  const [usernameStatus, setUsernameStatus] = useState(null) // null | 'checking' | 'available' | 'taken'
+  const [usernameStatus, setUsernameStatus] = useState(null)
   const [loading, setLoading] = useState(false)
   const [header, setHeader] = useState(null)
   const debounceRef = useRef(null)
@@ -34,8 +34,34 @@ export default function Register() {
     if (!form.username || !form.email || !form.phone || !form.password || !form.confirm) {
       toast.error('Please fill all fields'); return
     }
+
+    // Phone validation - 10 digits, starting with 6-9 (Indian numbers including VIP/special)
+    if (!/^[6-9]\d{9}$/.test(form.phone)) {
+      toast.error('Enter a valid 10-digit Indian mobile number'); return
+    }
+
+    // Email validation
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      toast.error('Please enter a valid email address'); return
+    }
+
+    // Strong password validation
+    if (form.password.length < 8) {
+      toast.error('Password must be at least 8 characters'); return
+    }
+    if (!/[A-Z]/.test(form.password)) {
+      toast.error('Password must contain at least one uppercase letter'); return
+    }
+    if (!/[0-9]/.test(form.password)) {
+      toast.error('Password must contain at least one number'); return
+    }
+    if (!/[!@#$%^&*]/.test(form.password)) {
+      toast.error('Password must contain at least one special character (!@#$%^&*)'); return
+    }
+
     if (usernameStatus === 'taken') { toast.error('Username is already taken'); return }
     if (form.password !== form.confirm) { toast.error('Passwords do not match'); return }
+
     setLoading(true)
     try {
       await axiosApi.post('/auth/register', {
@@ -82,7 +108,7 @@ export default function Register() {
           </div>
           <div className="input-group">
             <label>Phone</label>
-            <input type="text" placeholder="+91 XXXXX XXXXX" value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} />
+            <input type="text" placeholder="10-digit mobile number" value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} />
           </div>
           <div className="auth-row">
             <div className="input-group">
