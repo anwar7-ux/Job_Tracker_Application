@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const axiosApi = axios.create({
-  baseURL: 'https://jobtrackerbackend-production-d3a7.up.railway.app/api',
+  baseURL: 'https://job-tracker-backend-x9nc.onrender.com/api',
 })
 
 axiosApi.interceptors.request.use((config) => {
