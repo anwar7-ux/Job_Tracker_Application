@@ -6,7 +6,7 @@ const axiosApi = axios.create({
 
 axiosApi.interceptors.request.use((config) => {
   // ✅ sessionStorage clears automatically when browser/tab closes
-  const token = sessionStorage.getItem('token')
+  const token = localStorage.getItem('token')
   if (token) config.headers.Authorization = `Bearer ${token}`
   return config
 })
@@ -17,7 +17,7 @@ axiosApi.interceptors.response.use(
     if (error.response?.status === 401) {
       const isLoginPage = window.location.pathname === '/login'
       if (!isLoginPage) {
-        sessionStorage.clear()
+        localStorage.clear()
         window.location.href = '/login'
       }
     }
