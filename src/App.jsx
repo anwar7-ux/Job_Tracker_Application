@@ -1,24 +1,15 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-
-// Auth
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
-import ForgotPassword from './pages/auth/ForgotPassword'
-
-
-// Protected routes
 import { ProtectedUserRoute, ProtectedAdminRoute, ProtectedHRRoute } from './components/ProtectedRoutes'
-
-// Layouts
 import { UserLayout, AdminLayout, HRLayout } from './components/common/Layouts'
-import './components/common/Layouts.css'
 
 // User pages
 import Dashboard from './pages/user/Dashboard'
-import KanbanPage from './pages/user/KanbanPage'
-import AnalyticsPage from './pages/user/AnalyticsPage'
+import JobBoard from './pages/user/JobBoard'
+import PostJob from './pages/user/PostJob'
+import MyPosts from './pages/user/MyPostJobs'
+import MyApplications from './pages/user/MyApplications'
 import NotificationsPage from './pages/user/NotificationsPage'
 import ProfilePage from './pages/user/ProfilePage'
 
@@ -36,52 +27,46 @@ import HRRegisterAdmin from './pages/hr/HRRegisterAdmin'
 
 function App() {
   return (
-    <>
-      <ToastContainer position="top-right" autoClose={3000} />
-      <Routes>
-        {/* Default redirect */}
-        <Route path="/" element={<Navigate to="/login" replace />} />
+    <Routes>
+      <Route path="/" element={<Navigate to="/login" replace />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
 
-        {/* Auth */}
-        <Route path="/login"    element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-
-        {/* USER routes */}
-        <Route element={<ProtectedUserRoute />}>
-          <Route element={<UserLayout />}>
-            <Route path="/dashboard"     element={<Dashboard />} />
-            <Route path="/jobs"          element={<KanbanPage />} />
-            <Route path="/analytics"     element={<AnalyticsPage />} />
-            <Route path="/notifications" element={<NotificationsPage />} />
-            <Route path="/profile"       element={<ProfilePage />} />
-          </Route>
+      {/* USER */}
+      <Route element={<ProtectedUserRoute />}>
+        <Route element={<UserLayout />}>
+          <Route path="/dashboard"       element={<Dashboard />} />
+          <Route path="/job-board"       element={<JobBoard />} />
+          <Route path="/post-job"        element={<PostJob />} />
+          <Route path="/my-posts"        element={<MyPosts />} />
+          <Route path="/my-applications" element={<MyApplications />} />
+          <Route path="/notifications"   element={<NotificationsPage />} />
+          <Route path="/profile"         element={<ProfilePage />} />
         </Route>
+      </Route>
 
-        {/* ADMIN routes */}
-        <Route element={<ProtectedAdminRoute />}>
-          <Route element={<AdminLayout />}>
-            <Route path="/admin"                    element={<AdminDashboard />} />
-            <Route path="/admin/users"              element={<AdminUsers />} />
-            <Route path="/admin/site-header"        element={<AdminSiteHeader />} />
-            <Route path="/admin/site-footer"        element={<AdminSiteFooter />} />
-            <Route path="/admin/navigation"         element={<AdminNavigation />} />
-            <Route path="/admin/footer-navigation"  element={<AdminFooterNavigation />} />
-          </Route>
+      {/* ADMIN */}
+      <Route element={<ProtectedAdminRoute />}>
+        <Route element={<AdminLayout />}>
+          <Route path="/admin"                   element={<AdminDashboard />} />
+          <Route path="/admin/users"             element={<AdminUsers />} />
+          <Route path="/admin/site-header"       element={<AdminSiteHeader />} />
+          <Route path="/admin/site-footer"       element={<AdminSiteFooter />} />
+          <Route path="/admin/navigation"        element={<AdminNavigation />} />
+          <Route path="/admin/footer-navigation" element={<AdminFooterNavigation />} />
         </Route>
+      </Route>
 
-        {/* HR routes */}
-        <Route element={<ProtectedHRRoute />}>
-          <Route element={<HRLayout />}>
-            <Route path="/hr"                  element={<HRDashboard />} />
-            <Route path="/hr/register-admin"   element={<HRRegisterAdmin />} />
-          </Route>
+      {/* HR */}
+      <Route element={<ProtectedHRRoute />}>
+        <Route element={<HRLayout />}>
+          <Route path="/hr"                 element={<HRDashboard />} />
+          <Route path="/hr/register-admin"  element={<HRRegisterAdmin />} />
         </Route>
+      </Route>
 
-        {/* Catch all */}
-        <Route path="*" element={<Navigate to="/login" replace />} />
-      </Routes>
-    </>
+      <Route path="*" element={<Navigate to="/login" replace />} />
+    </Routes>
   )
 }
 
