@@ -32,11 +32,11 @@ export default function Login() {
 
       const { token, role } = res.data
 
-      // ✅ sessionStorage auto-clears when browser/tab closes
-      // User will be logged out automatically on browser close
-      sessionStorage.setItem('token', token)
-      sessionStorage.setItem('role', role)
-      sessionStorage.setItem('username', form.username)
+      // ✅ localStorage persists until explicitly cleared
+      // User will remain logged in until they manually log out
+      localStorage.setItem('token', token)
+      localStorage.setItem('role', role)
+      localStorage.setItem('username', form.username)
 
       toast.success('Welcome back!')
 
