@@ -32,8 +32,8 @@ export default function Login() {
 
       const { token, role } = res.data
 
-      // ✅ localStorage persists until explicitly cleared
-      // User will remain logged in until they manually log out
+      // ✅ sessionStorage auto-clears when browser/tab closes
+      // User will be logged out automatically on browser close
       localStorage.setItem('token', token)
       localStorage.setItem('role', role)
       localStorage.setItem('username', form.username)
